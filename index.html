@@ -1,45 +1,68 @@
-Custom domain>
 <!DOCTYPE html>
 <html>
 <head>
-<title>My AI Voice Pro</title>
+<title>AI Voice Studio</title>
 <style>
 body {
   font-family: Arial;
-  background: #111;
+  background: #0f172a;
   color: white;
   text-align: center;
   padding: 40px;
 }
-input {
+input, select {
   width: 80%;
   padding: 12px;
   font-size: 18px;
+  margin: 5px;
 }
 button {
   padding: 12px 20px;
   font-size: 18px;
-  margin-top: 10px;
-  background: #00ffcc;
+  margin: 10px;
+  background: #22c55e;
   border: none;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎤 AI Voice Pro</h1>
+<h1>🎤 AI Voice Studio</h1>
 
-<input id="text" placeholder="พิมพ์ข้อความที่นี่">
+<input id="text" placeholder="พิมพ์ข้อความ">
+
 <br>
+
+<select id="voiceSelect"></select>
+
+<br>
+
 <button onclick="speak()">พูด</button>
 
 <script>
+let voices = [];
+
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+  let select = document.getElementById("voiceSelect");
+  select.innerHTML = "";
+  voices.forEach((v, i) => {
+    let option = document.createElement("option");
+    option.value = i;
+    option.text = v.name;
+    select.appendChild(option);
+  });
+}
+
+speechSynthesis.onvoiceschanged = loadVoices;
+
 function speak() {
   let text = document.getElementById("text").value;
+  let voiceIndex = document.getElementById("voiceSelect").value;
   let msg = new SpeechSynthesisUtterance(text);
-  msg.rate = 1;
-  msg.pitch = 1;
+  msg.voice = voices[voiceIndex];
   speechSynthesis.speak(msg);
 }
 </script>
