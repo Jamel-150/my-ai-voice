@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My AI Voice</title>
+</head>
+<body>
+
+<h1>AI Voice Website</h1>
+
+<input id="text" placeholder="พิมพ์ข้อความ">
+<button onclick="speak()">พูด</button>
+
+<script>
+function speak() {
+  let text = document.getElementById("text").value;
+  let msg = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(msg);
+}
+</script>
+
+</body>
+</html>
