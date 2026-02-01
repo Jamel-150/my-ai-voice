@@ -1,19 +1,45 @@
+Custom domain>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My AI Voice</title>
+<title>My AI Voice Pro</title>
+<style>
+body {
+  font-family: Arial;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+input {
+  width: 80%;
+  padding: 12px;
+  font-size: 18px;
+}
+button {
+  padding: 12px 20px;
+  font-size: 18px;
+  margin-top: 10px;
+  background: #00ffcc;
+  border: none;
+}
+</style>
 </head>
+
 <body>
 
-<h1>AI Voice Website</h1>
+<h1>🎤 AI Voice Pro</h1>
 
-<input id="text" placeholder="พิมพ์ข้อความ">
+<input id="text" placeholder="พิมพ์ข้อความที่นี่">
+<br>
 <button onclick="speak()">พูด</button>
 
 <script>
 function speak() {
   let text = document.getElementById("text").value;
   let msg = new SpeechSynthesisUtterance(text);
+  msg.rate = 1;
+  msg.pitch = 1;
   speechSynthesis.speak(msg);
 }
 </script>
